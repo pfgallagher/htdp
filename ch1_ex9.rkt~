@@ -1,0 +1,24 @@
+;; The first three lines of this file were inserted by DrRacket. They record metadata
+;; about the language level of this file in a form that our tools can easily process.
+#reader(lib "htdp-beginner-reader.ss" "lang")((modname ch1_ex9) (read-case-sensitive #t) (teachpacks ((lib "image.rkt" "teachpack" "2htdp") (lib "universe.rkt" "teachpack" "2htdp"))) (htdp-settings #(#t constructor repeating-decimal #f #t none #f ((lib "image.rkt" "teachpack" "2htdp") (lib "universe.rkt" "teachpack" "2htdp")) #f)))
+(define (in val)
+  (cond
+    [(string? val) (string-length val)]
+    [(image? val) (* (image-height val) (image-width val))]
+    [(number? val) (if (<= val 0) (* val -1) (- val 1))]
+    [(boolean? val) (if (boolean=? val #true) 10 20)]  
+    [else "unknown data type"]))
+
+; value of in to a positive number.
+; For a String, it determines how long the String is
+; for an Image, it uses the area
+; for a Number, it decrements the number by 1, unless it is already 0 or negative;
+; for #true it uses 10 and for #false 20.
+
+(in "hello")
+(in (rectangle 10 10 "solid" "green"))
+(in 5)
+(in -5)
+(in 0)
+(in #true)
+(in #false)
